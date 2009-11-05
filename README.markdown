@@ -56,6 +56,7 @@ It supports a number of options:
  * --bacon: generate spec_helper.rb and spec ready for bacon
  * --gemcutter: setup releasing to gemcutter
  * --rubyforge: setup releasing to rubyforge
+ * --bundler: setup gem to use bundler
 
 ### Default options
 
