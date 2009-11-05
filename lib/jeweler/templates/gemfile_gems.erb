@@ -1,0 +1,18 @@
+<% case testing_framework %>
+<% when :rspec %>
+gem 'rspec',     :only => :test, :require_as => 'spec'
+<% when :micronaut %>
+gem 'micronaut', :only => :test
+<% end %>
+<% if should_use_cucumber %>
+gem 'cucumber',  :only => :test
+<% end %>
+<% if should_use_reek %>
+gem 'reek',      :only => :test
+<% end %>
+<% if should_use_roodi %>
+gem 'roodi',     :only => :test
+<% end %>
+<% if documentation_framework == :yard %>
+gem 'yard',      :only => :test
+<% end %>
