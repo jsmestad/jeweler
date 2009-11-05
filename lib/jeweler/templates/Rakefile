@@ -1,5 +1,3 @@
-require 'rubygems'
-require 'rake'
 
 <%= render_template 'jeweler_tasks.erb' %>
 

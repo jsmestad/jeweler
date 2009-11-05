@@ -75,6 +75,12 @@ class Jeweler
             self[:use_roodi] = true
           end
 
+          o.seperator ""
+
+          o.on('--bundler', 'setup project to use bundler') do
+            self[:use_bundler] = true
+          end
+
           o.separator ""
 
           o.on('--gemcutter', 'setup project for gemcutter') do

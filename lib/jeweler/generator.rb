@@ -19,10 +19,10 @@ class Jeweler
   class NoGitHubToken < StandardError
   end
   class GitInitFailed < StandardError
-  end    
+  end
 
   # Generator for creating a jeweler-enabled project
-  class Generator    
+  class Generator
     require 'jeweler/generator/options'
     require 'jeweler/generator/application'
 
@@ -42,9 +42,9 @@ class Jeweler
 
     attr_accessor :target_dir, :user_name, :user_email, :summary, :homepage,
                   :description, :project_name, :github_username, :github_token,
-                  :repo, :should_create_remote_repo, 
+                  :repo, :should_create_remote_repo,
                   :testing_framework, :documentation_framework,
-                  :should_use_cucumber, :should_setup_gemcutter,
+                  :should_use_cucumber, :should_setup_gemcutter, :should_use_bundler,
                   :should_setup_rubyforge, :should_use_reek, :should_use_roodi,
                   :development_dependencies,
                   :options
@@ -83,6 +83,7 @@ class Jeweler
       self.should_use_cucumber    = options[:use_cucumber]
       self.should_use_reek        = options[:use_reek]
       self.should_use_roodi       = options[:use_roodi]
+      self.should_use_bundler     = options[:use_bundler]
       self.should_setup_gemcutter = options[:gemcutter]
       self.should_setup_rubyforge = options[:rubyforge]
 
@@ -192,6 +193,8 @@ class Jeweler
         touch_in_target           File.join(features_steps_dir, steps_filename)
       end
 
+      output_template_in_target 'Gemfile' if should_use_bundler
+
     end
 
     def render_template(source)
@@ -258,7 +261,7 @@ class Jeweler
         end
       end
     end
-    
+
     def create_and_push_repo
       Net::HTTP.post_form URI.parse('http://github.com/api/v2/yaml/repos/create'),
                                 'login' => github_username,
@@ -274,7 +277,7 @@ class Jeweler
       $stdout.puts "Visit #{homepage}/edit and click 'Enable RubyGems'"
       #url = "https://github.com/#{github_username}/#{project_name}/update"
       #`curl -F 'login=#{github_username}' -F 'token=#{github_token}' -F 'field=repository_rubygem' -F 'value=1' #{url} 2>/dev/null`
-  
+
       # FIXME use NET::HTTP instead of curl
       #Net::HTTP.post_form URI.parse(url),
                                 #'login' => github_username,

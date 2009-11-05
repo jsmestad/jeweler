@@ -1,0 +1,18 @@
+source 'http://gemcutter.org'
+
+# Project Gems
+<%= render_template 'gemfile_gems' %>
+
+# Standard Gems
+gem 'rake',      :only => :test
+gem 'jeweler',   :only => :test
+gem 'bundler',   :only => :test
+
+# Specify where gem executables should be copied to.
+bin_path 'gbin'
+
+# Specify that rubygems should be completely disabled. This means that it
+# will be impossible to require it and that available gems will be
+# limited exclusively to gems that have been bundled.
+#
+#disable_rubygems

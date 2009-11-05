@@ -40,10 +40,10 @@ class TestSpecification < Test::Unit::TestCase
       assert @gemspec.has_rdoc
     end
   end
- 
+
   context "there aren't any executables in the project directory" do
     setup do
-      @project.directory 'bin' 
+      @project.directory 'bin'
     end
 
     context "and there hasn't been any set on the gemspec" do
@@ -90,6 +90,7 @@ class TestSpecification < Test::Unit::TestCase
         assert_equal %w(burnination trogdor), @gemspec.executables
       end
     end
+
     context "and has been previously set executables" do
       setup do
         @gemspec  = build_jeweler_gemspec do |gemspec|
@@ -97,6 +98,7 @@ class TestSpecification < Test::Unit::TestCase
         end
         @gemspec.set_jeweler_defaults(@project)
       end
+
       should "have only the original executables in the gemspec" do
         assert_equal %w(burnination), @gemspec.executables
       end

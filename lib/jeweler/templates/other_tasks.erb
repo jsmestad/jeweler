@@ -1,3 +1,13 @@
+<% if should_use_bundler %>
+require File.join(File.expand_path(File.dirname(__FILE__)), 'vendor', 'gems', 'environment')
+Bundler.require_env
+require 'rake'
+require 'bundler'
+<% else %>
+require 'rubygems'
+require 'rake'
+<% end %>
+
 <% case testing_framework %>
 <% when :rspec %>
 require 'spec/rake/spectask'
